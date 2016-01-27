@@ -5,10 +5,15 @@
 package ua.com.ukrelektro.flight.gui;
 
 import java.util.ArrayList;
-import ua.com.ukrelektro.flight.client.SearchClient;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import ua.com.ukrelektro.flight.client.FlightWSClient;
 import ua.com.ukrelektro.flight.models.BoxModel;
 import ua.com.ukrelektro.flight.object.ExtPlace;
+import ua.com.ukrelektro.flight.utils.MessageManager;
+import ua.com.ukrelektro.flight.ws.ArgumentException_Exception;
 import ua.com.ukrelektro.flight.ws.Flight;
+import ua.com.ukrelektro.flight.ws.FlightWSService;
 import ua.com.ukrelektro.flight.ws.Passenger;
 import ua.com.ukrelektro.flight.ws.Place;
 
@@ -217,21 +222,25 @@ public class DialogBuy extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyActionPerformed
-        Passenger passenger = new Passenger();
-        
-        passenger.setDocumentNumber(txtDocumentNumber.getText());
-        passenger.setEmail(txtEmail.getText());
-        passenger.setFamilyName(txtFamilyName.getText());
-        passenger.setGivenName(txtFirstName.getText());
-        passenger.setMiddleName(txtMiddleName.getText());
-        passenger.setPhone(txtPhone.getText());
-  
-        
-        Place place = (Place)comboPlaces.getModel().getSelectedItem();
-        
-        SearchClient.getInstance().buyTicket(flight, place, passenger, txtAddInfo.getText());
-        
-        dispose();
+        try {
+            Passenger passenger = new Passenger();
+            
+            passenger.setDocumentNumber(txtDocumentNumber.getText());
+            passenger.setEmail(txtEmail.getText());
+            passenger.setFamilyName(txtFamilyName.getText());
+            passenger.setGivenName(txtFirstName.getText());
+            passenger.setMiddleName(txtMiddleName.getText());
+            passenger.setPhone(txtPhone.getText());
+      
+            
+            Place place = (Place)comboPlaces.getModel().getSelectedItem();
+            
+            FlightWSClient.getInstance().buyTicket(flight, place, passenger, txtAddInfo.getText());
+            dispose();
+        } catch (ArgumentException_Exception ex) {
+            Logger.getLogger(DialogBuy.class.getName()).log(Level.SEVERE, null, ex);
+            MessageManager.showErrorMessage(this, "Error",  ex.getCause().getMessage());
+        }
         
     }//GEN-LAST:event_btnBuyActionPerformed
 

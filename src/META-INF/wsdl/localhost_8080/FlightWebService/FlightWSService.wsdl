@@ -14,6 +14,9 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="ArgumentException">
+<soap:fault name="ArgumentException" use="literal"/>
+</fault>
 </operation>
 <operation name="searchFlight">
 <soap:operation soapAction=""/>
@@ -23,6 +26,9 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="ArgumentException">
+<soap:fault name="ArgumentException" use="literal"/>
+</fault>
 </operation>
 <operation name="getAllCities">
 <soap:operation soapAction=""/>
@@ -41,6 +47,9 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="ArgumentException">
+<soap:fault name="ArgumentException" use="literal"/>
+</fault>
 </operation>
 </binding>
 <service name="FlightWSService">

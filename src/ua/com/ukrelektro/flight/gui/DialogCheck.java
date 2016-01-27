@@ -4,9 +4,12 @@
  */
 package ua.com.ukrelektro.flight.gui;
 
-import javax.swing.JOptionPane;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingWorker;
-import ua.com.ukrelektro.flight.client.SearchClient;
+import ua.com.ukrelektro.flight.client.FlightWSClient;
+import ua.com.ukrelektro.flight.utils.MessageManager;
 import ua.com.ukrelektro.flight.ws.Reservation;
 
 public class DialogCheck extends javax.swing.JDialog {
@@ -97,7 +100,7 @@ public class DialogCheck extends javax.swing.JDialog {
                     Thread.sleep(300);
                 }
 
-                reservation = SearchClient.getInstance().checkReservationByCode(txtCheckCode.getText());
+                reservation = FlightWSClient.getInstance().checkReservationByCode(txtCheckCode.getText());
 
                 String message = null;
 
@@ -114,17 +117,22 @@ public class DialogCheck extends javax.swing.JDialog {
                     message = "No results";
                 }
 
-                JOptionPane.showMessageDialog(DialogCheck.this,
-                        message,
-                        "Search results",
-                        JOptionPane.PLAIN_MESSAGE);
-
+                MessageManager.showInformMessage(rootPane, "Search results", message);
                 return null;
             }
 
-            @Override
+           @Override
             protected void done() {
                 showBusy(false);
+                try {
+                    get();
+                }catch (InterruptedException ex) {
+                    Logger.getLogger(DialogCheck.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ExecutionException ex) {
+                    Logger.getLogger(DialogCheck.class.getName()).log(Level.SEVERE, null, ex);
+                    MessageManager.showErrorMessage(rootPane, "Error",  ex.getCause().getMessage());
+                }
+
             }
         }.execute();
     }//GEN-LAST:event_btnCheckActionPerformed

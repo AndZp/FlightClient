@@ -4,25 +4,27 @@
  */
 package ua.com.ukrelektro.flight.gui;
 
-
 import com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
-import ua.com.ukrelektro.flight.client.SearchClient;
+import ua.com.ukrelektro.flight.client.FlightWSClient;
 import ua.com.ukrelektro.flight.models.BoxModel;
 import ua.com.ukrelektro.flight.models.FlightModel;
 import ua.com.ukrelektro.flight.object.ExtCity;
+import ua.com.ukrelektro.flight.utils.MessageManager;
 import ua.com.ukrelektro.flight.ws.City;
 import ua.com.ukrelektro.flight.ws.Flight;
 
 public class FrameMain extends javax.swing.JFrame {
 
-    private SearchClient searchClient = SearchClient.getInstance();
+    private FlightWSClient searchClient = FlightWSClient.getInstance();
     private ArrayList<ExtCity> cityList;
     private ArrayList<Flight> flightList = new ArrayList<>();
     private City cityFrom;
@@ -33,6 +35,8 @@ public class FrameMain extends javax.swing.JFrame {
      * Creates new form FrameMain
      */
     public FrameMain() {
+        //ProxySelector.setDefault(new CustomProxySelector());
+
         initComponents();
         fillCities();
         dateFlight.setTimeZone(TimeZone.getTimeZone("GMT"));
@@ -315,42 +319,41 @@ public class FrameMain extends javax.swing.JFrame {
 
     private void searchFlights() {
 
-
         showBusy(true);
         new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws Exception {
-
 
                 // loading...
                 for (int i = 0; i < 5; i++) {
                     Thread.sleep(300);
                 }
 
-
                 flightList.clear();
                 flightList.addAll(searchClient.searchFlight(dateFrom, cityFrom, cityTo));
-
 
                 ((FlightModel) tableFlights.getModel()).fireTableDataChanged();
                 return null;
             }
 
-
             @Override
             protected void done() {
+
                 showBusy(false);
-                if (flightList.isEmpty()) {
-                    JOptionPane.showMessageDialog(FrameMain.this,
-                            "No resuls",
-                            "Search results",
-                            JOptionPane.PLAIN_MESSAGE);
+                try {
+                    get();
+                    if (flightList.isEmpty()) {
+                        MessageManager.showInformMessage(rootPane, "Search results", "No results");
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(DialogCheck.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ExecutionException ex) {
+                    Logger.getLogger(DialogCheck.class.getName()).log(Level.SEVERE, null, ex);
+                    MessageManager.showErrorMessage(rootPane, "Error", ex.getCause().getMessage());
                 }
+
             }
         }.execute();
-
-
-
 
     }
 
