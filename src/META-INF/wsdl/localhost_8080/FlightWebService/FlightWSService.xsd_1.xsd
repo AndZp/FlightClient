@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.2.0-1 (tags/2.2.0u1-7139; 2012-06-02T10:55:19+0000) JAXWS-RI/2.2.6-2 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws.flight.ukrelektro.com.ua/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.flight.ukrelektro.com.ua/">
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.2.0-1 (tags/2.2.0u1-7139; 2012-06-02T10:55:19+0000) JAXWS-RI/2.2.6-2 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://ukrelektro.com.ua/flight/ws" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ukrelektro.com.ua/flight/ws">
 
 <xs:element name="buyTicket" type="tns:buyTicket"/>
 
@@ -8,10 +8,6 @@
 
 <xs:element name="checkReservationByCodeResponse" type="tns:checkReservationByCodeResponse"/>
 
-<xs:element name="checkReservationByFamilyName" type="tns:checkReservationByFamilyName"/>
-
-<xs:element name="checkReservationByFamilyNameResponse" type="tns:checkReservationByFamilyNameResponse"/>
-
 <xs:element name="getAllCities" type="tns:getAllCities"/>
 
 <xs:element name="getAllCitiesResponse" type="tns:getAllCitiesResponse"/>
@@ -20,12 +16,37 @@
 
 <xs:element name="searchFlightResponse" type="tns:searchFlightResponse"/>
 
-<xs:complexType name="buyTicket">
+<xs:complexType name="searchFlight">
 <xs:sequence>
-<xs:element name="arg0" type="tns:flight" minOccurs="0"/>
-<xs:element name="arg1" type="tns:place" minOccurs="0"/>
-<xs:element name="arg2" type="tns:passenger" minOccurs="0"/>
-<xs:element name="arg3" type="xs:string" minOccurs="0"/>
+<xs:element name="date" type="xs:long"/>
+<xs:element name="cityFrom" type="tns:city" minOccurs="0"/>
+<xs:element name="cityTo" type="tns:city" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="city">
+<xs:sequence>
+<xs:element name="code" type="xs:string" minOccurs="0"/>
+<xs:element name="country" type="tns:country" minOccurs="0"/>
+<xs:element name="desc" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="country">
+<xs:sequence>
+<xs:element name="code" type="xs:string" minOccurs="0"/>
+<xs:element name="desc" type="xs:string" minOccurs="0"/>
+<xs:element name="flag" type="xs:base64Binary" minOccurs="0"/>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="searchFlightResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:flight" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -80,23 +101,12 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="city">
+<xs:complexType name="buyTicket">
 <xs:sequence>
-<xs:element name="code" type="xs:string" minOccurs="0"/>
-<xs:element name="country" type="tns:country" minOccurs="0"/>
-<xs:element name="desc" type="xs:string" minOccurs="0"/>
-<xs:element name="id" type="xs:long"/>
-<xs:element name="name" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="country">
-<xs:sequence>
-<xs:element name="code" type="xs:string" minOccurs="0"/>
-<xs:element name="desc" type="xs:string" minOccurs="0"/>
-<xs:element name="flag" type="xs:base64Binary" minOccurs="0"/>
-<xs:element name="id" type="xs:long"/>
-<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="flight" type="tns:flight" minOccurs="0"/>
+<xs:element name="place" type="tns:place" minOccurs="0"/>
+<xs:element name="passenger" type="tns:passenger" minOccurs="0"/>
+<xs:element name="addInfo" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -118,27 +128,23 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="searchFlight">
+<xs:complexType name="getAllCities">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getAllCitiesResponse">
 <xs:sequence>
-<xs:element name="arg0" type="xs:long"/>
-<xs:element name="arg1" type="tns:city" minOccurs="0"/>
-<xs:element name="arg2" type="tns:city" minOccurs="0"/>
+<xs:element name="return" type="tns:city" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="searchFlightResponse">
+<xs:complexType name="checkReservationByCode">
 <xs:sequence>
-<xs:element name="return" type="tns:flight" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="code" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="checkReservationByFamilyName">
-<xs:sequence>
-<xs:element name="arg0" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="checkReservationByFamilyNameResponse">
+<xs:complexType name="checkReservationByCodeResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:reservation" minOccurs="0"/>
 </xs:sequence>
@@ -153,28 +159,6 @@
 <xs:element name="passenger" type="tns:passenger" minOccurs="0"/>
 <xs:element name="place" type="tns:place" minOccurs="0"/>
 <xs:element name="reserveDateTime" type="xs:dateTime" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="checkReservationByCode">
-<xs:sequence>
-<xs:element name="arg0" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="checkReservationByCodeResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:reservation" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getAllCities">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="getAllCitiesResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:city" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

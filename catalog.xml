@@ -14,4 +14,7 @@
     <system systemId="http://localhost:8080/Flights_WS/SearchWS?xsd=1" uri="xml-resources/web-service-references/SearchWS/wsdl/localhost_8080/Flights_WS/SearchWS.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/FlightWebService/SearchWS?WSDL" uri="xml-resources/web-service-references/SearchWS/wsdl/localhost_8080/FlightWebService/SearchWS.wsdl"/>
     <system systemId="http://localhost:8080/FlightWebService/SearchWS?xsd=1" uri="xml-resources/web-service-references/SearchWS/wsdl/localhost_8080/FlightWebService/SearchWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/FlightWebService/FlightWSService?WSDL" uri="xml-resources/web-service-references/FlightWSService/wsdl/localhost_8080/FlightWebService/FlightWSService.wsdl"/>
+    <system systemId="http://localhost:8080/FlightWebService/FlightWSService?wsdl=1" uri="xml-resources/web-service-references/FlightWSService/wsdl/localhost_8080/FlightWebService/FlightWSService.wsdl_1.wsdl"/>
+    <system systemId="http://localhost:8080/FlightWebService/FlightWSService?xsd=1" uri="xml-resources/web-service-references/FlightWSService/wsdl/localhost_8080/FlightWebService/FlightWSService.xsd_1.xsd"/>
 </catalog>

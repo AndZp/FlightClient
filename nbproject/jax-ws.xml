@@ -2,11 +2,12 @@
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services/>
   <clients>
-    <client name="SearchWS">
-      <wsdl-url>http://localhost:8080/FlightWebService/SearchWS?WSDL</wsdl-url>
-      <local-wsdl-file>localhost_8080/FlightWebService/SearchWS.wsdl</local-wsdl-file>
+    <client name="FlightWSService">
+      <wsdl-url>http://localhost:8080/FlightWebService/FlightWSService?WSDL</wsdl-url>
+      <local-wsdl-file>localhost_8080/FlightWebService/FlightWSService.wsdl</local-wsdl-file>
       <package-name>ua.com.ukrelektro.flight.ws</package-name>
       <catalog-file>catalog.xml</catalog-file>
+      <use-dispatch>true</use-dispatch>
       <wsimport-options>
         <wsimport-option>
           <wsimport-option-name>extension</wsimport-option-name>
@@ -22,7 +23,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/FlightWebService/SearchWS?WSDL</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/FlightWebService/FlightWSService?WSDL</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>

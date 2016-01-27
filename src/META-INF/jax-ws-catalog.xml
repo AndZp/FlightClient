@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://localhost:8080/Flights7/SearchWS?WSDL" uri="wsdl/localhost_8080/Flights7/SearchWS.wsdl"/>
-    <system systemId="http://localhost:8080/Flights7/SearchWS?xsd=1" uri="wsdl/localhost_8080/Flights7/SearchWS.xsd_1.xsd"/>
-    <system systemId="http://localhost:8080/Flights_common/SearchWS?WSDL" uri="wsdl/localhost_8080/Flights_common/SearchWS.wsdl"/>
-    <system systemId="http://localhost:8080/Flights_common/SearchWS?xsd=1" uri="wsdl/localhost_8080/Flights_common/SearchWS.xsd_1.xsd"/>
-    <system systemId="http://localhost:8080/Flights_WS/SearchWS?WSDL" uri="wsdl/localhost_8080/Flights_WS/SearchWS.wsdl"/>
-    <system systemId="http://localhost:8080/Flights_WS/SearchWS?xsd=1" uri="wsdl/localhost_8080/Flights_WS/SearchWS.xsd_1.xsd"/>
-    <system systemId="http://localhost:8080/FlightWebService/SearchWS?WSDL" uri="wsdl/localhost_8080/FlightWebService/SearchWS.wsdl"/>
-    <system systemId="http://localhost:8080/FlightWebService/SearchWS?xsd=1" uri="wsdl/localhost_8080/FlightWebService/SearchWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/FlightWebService/FlightWSService?WSDL" uri="wsdl/localhost_8080/FlightWebService/FlightWSService.wsdl"/>
+    <system systemId="http://localhost:8080/FlightWebService/FlightWSService?wsdl=1" uri="wsdl/localhost_8080/FlightWebService/FlightWSService.wsdl_1.wsdl"/>
+    <system systemId="http://localhost:8080/FlightWebService/FlightWSService?xsd=1" uri="wsdl/localhost_8080/FlightWebService/FlightWSService.xsd_1.xsd"/>
 </catalog>

@@ -16,22 +16,22 @@
             <classpath path="${libs.jaxws21.classpath}"/>
         </taskdef>
     </target>
-    <target name="wsimport-client-SearchWS" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/SearchWS"/>
-        <property name="wsdl-SearchWS" location="xml-resources/web-service-references/SearchWS/wsdl/localhost_8080/FlightWebService/SearchWS.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/SearchWS" destdir="${build.generated.dir}/jax-wsCache/SearchWS" wsdl="${wsdl-SearchWS}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/FlightWebService/SearchWS?WSDL" xnocompile="true" xendorsed="true">
-            <depends file="${wsdl-SearchWS}"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/SearchWS"/>
+    <target name="wsimport-client-FlightWSService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/FlightWSService"/>
+        <property name="wsdl-FlightWSService" location="xml-resources/web-service-references/FlightWSService/wsdl/localhost_8080/FlightWebService/FlightWSService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/FlightWSService" destdir="${build.generated.dir}/jax-wsCache/FlightWSService" wsdl="${wsdl-FlightWSService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/FlightWebService/FlightWSService?WSDL" xnocompile="true" xendorsed="true">
+            <depends file="${wsdl-FlightWSService}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/FlightWSService"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/SearchWS">
+            <fileset dir="${build.generated.dir}/jax-wsCache/FlightWSService">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-SearchWS" depends="-init-project">
-        <delete dir="${build.generated.dir}/jax-wsCache/SearchWS"/>
+    <target name="wsimport-client-clean-FlightWSService" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/FlightWSService"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/ua/com/ukrelektro/flight/ws"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-SearchWS"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-FlightWSService"/>
 </project>

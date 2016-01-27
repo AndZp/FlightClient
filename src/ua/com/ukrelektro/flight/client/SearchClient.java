@@ -9,8 +9,8 @@ import ua.com.ukrelektro.flight.ws.Flight;
 import ua.com.ukrelektro.flight.ws.Passenger;
 import ua.com.ukrelektro.flight.ws.Place;
 import ua.com.ukrelektro.flight.ws.Reservation;
-import ua.com.ukrelektro.flight.ws.SearchWS;
-import ua.com.ukrelektro.flight.ws.SearchWS_Service;
+import ua.com.ukrelektro.flight.ws.FlightWSService;
+import ua.com.ukrelektro.flight.ws.FlightWS;
 
 public class SearchClient {
 
@@ -23,18 +23,18 @@ public class SearchClient {
 
         return searchClient;
     }
-    private SearchWS_Service searchService;
-    private SearchWS searchWS;
+    private FlightWSService flightService;
+    private FlightWS flightWS;
 
     private SearchClient() {
-        searchService = new SearchWS_Service();
-        searchWS = searchService.getSearchWSPort();
+        flightService = new FlightWSService();
+        flightWS = flightService.getFlightWSPort();
     }
 
     public ArrayList<ExtCity> getAllCities() {
         ArrayList<ExtCity> cityList = new ArrayList<>();
         
-        for (City city : searchWS.getAllCities()) {
+        for (City city : flightWS.getAllCities()) {
             ExtCity extCity = new ExtCity();
             extCity.setCode(city.getCode());
             extCity.setCountry(city.getCountry());
@@ -55,17 +55,17 @@ public class SearchClient {
 
     public ArrayList<Flight> searchFlight(long date, City cityFrom, City cityTo) {
         ArrayList<Flight> flightList = new ArrayList<>();
-        flightList.addAll(searchWS.searchFlight(date, cityFrom, cityTo));
+        flightList.addAll(flightWS.searchFlight(date, cityFrom, cityTo));
         return flightList;
     }
 
     public boolean buyTicket(Flight flight, Place place, Passenger passenger, String addInfo) {
-        return searchWS.buyTicket(flight, place, passenger, addInfo);
+        return flightWS.buyTicket(flight, place, passenger, addInfo);
     }
 
 
     public Reservation checkReservationByCode(String code){
-        return searchWS.checkReservationByCode(code);
+        return flightWS.checkReservationByCode(code);
     }
 
 }
