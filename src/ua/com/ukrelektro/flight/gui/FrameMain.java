@@ -20,10 +20,6 @@ import ua.com.ukrelektro.flight.object.ExtCity;
 import ua.com.ukrelektro.flight.ws.City;
 import ua.com.ukrelektro.flight.ws.Flight;
 
-/**
- *
- * @author Tim
- */
 public class FrameMain extends javax.swing.JFrame {
 
     private SearchClient searchClient = SearchClient.getInstance();
@@ -346,8 +342,8 @@ public class FrameMain extends javax.swing.JFrame {
                 showBusy(false);
                 if (flightList.isEmpty()) {
                     JOptionPane.showMessageDialog(FrameMain.this,
-                            "Ничего не найдено",
-                            "Результаты поиска",
+                            "No resuls",
+                            "Search results",
                             JOptionPane.PLAIN_MESSAGE);
                 }
             }
