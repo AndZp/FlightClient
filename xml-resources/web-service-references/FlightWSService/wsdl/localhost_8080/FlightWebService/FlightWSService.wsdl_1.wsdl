@@ -10,6 +10,9 @@
 <message name="checkReservationByCodeResponse">
 <part name="parameters" element="tns:checkReservationByCodeResponse"/>
 </message>
+<message name="ArgumentException">
+<part name="fault" element="tns:ArgumentException"/>
+</message>
 <message name="searchFlight">
 <part name="parameters" element="tns:searchFlight"/>
 </message>
@@ -32,18 +35,21 @@
 <operation name="checkReservationByCode">
 <input xmlns:ns1="http://www.w3.org/2007/05/addressing/metadata" ns1:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/checkReservationByCodeRequest" message="tns:checkReservationByCode"/>
 <output xmlns:ns2="http://www.w3.org/2007/05/addressing/metadata" ns2:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/checkReservationByCodeResponse" message="tns:checkReservationByCodeResponse"/>
+<fault xmlns:ns3="http://www.w3.org/2007/05/addressing/metadata" message="tns:ArgumentException" name="ArgumentException" ns3:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/checkReservationByCode/Fault/ArgumentException"/>
 </operation>
 <operation name="searchFlight">
-<input xmlns:ns3="http://www.w3.org/2007/05/addressing/metadata" ns3:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/searchFlightRequest" message="tns:searchFlight"/>
-<output xmlns:ns4="http://www.w3.org/2007/05/addressing/metadata" ns4:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/searchFlightResponse" message="tns:searchFlightResponse"/>
+<input xmlns:ns4="http://www.w3.org/2007/05/addressing/metadata" ns4:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/searchFlightRequest" message="tns:searchFlight"/>
+<output xmlns:ns5="http://www.w3.org/2007/05/addressing/metadata" ns5:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/searchFlightResponse" message="tns:searchFlightResponse"/>
+<fault xmlns:ns6="http://www.w3.org/2007/05/addressing/metadata" message="tns:ArgumentException" name="ArgumentException" ns6:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/searchFlight/Fault/ArgumentException"/>
 </operation>
 <operation name="getAllCities">
-<input xmlns:ns5="http://www.w3.org/2007/05/addressing/metadata" ns5:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/getAllCitiesRequest" message="tns:getAllCities"/>
-<output xmlns:ns6="http://www.w3.org/2007/05/addressing/metadata" ns6:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/getAllCitiesResponse" message="tns:getAllCitiesResponse"/>
+<input xmlns:ns7="http://www.w3.org/2007/05/addressing/metadata" ns7:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/getAllCitiesRequest" message="tns:getAllCities"/>
+<output xmlns:ns8="http://www.w3.org/2007/05/addressing/metadata" ns8:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/getAllCitiesResponse" message="tns:getAllCitiesResponse"/>
 </operation>
 <operation name="buyTicket">
-<input xmlns:ns7="http://www.w3.org/2007/05/addressing/metadata" ns7:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/buyTicketRequest" message="tns:buyTicket"/>
-<output xmlns:ns8="http://www.w3.org/2007/05/addressing/metadata" ns8:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/buyTicketResponse" message="tns:buyTicketResponse"/>
+<input xmlns:ns9="http://www.w3.org/2007/05/addressing/metadata" ns9:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/buyTicketRequest" message="tns:buyTicket"/>
+<output xmlns:ns10="http://www.w3.org/2007/05/addressing/metadata" ns10:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/buyTicketResponse" message="tns:buyTicketResponse"/>
+<fault xmlns:ns11="http://www.w3.org/2007/05/addressing/metadata" message="tns:ArgumentException" name="ArgumentException" ns11:Action="http://ukrelektro.com.ua/flight/ws/FlightWS/buyTicket/Fault/ArgumentException"/>
 </operation>
 </portType>
 </definitions>
