@@ -5,6 +5,7 @@
 package ua.com.ukrelektro.flight.gui;
 
 import com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel;
+import java.net.ProxySelector;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
@@ -15,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 import ua.com.ukrelektro.flight.client.FlightWSClient;
+import ua.com.ukrelektro.flight.client.proxy.CustomProxySelector;
 import ua.com.ukrelektro.flight.models.BoxModel;
 import ua.com.ukrelektro.flight.models.FlightModel;
 import ua.com.ukrelektro.flight.object.ExtCity;

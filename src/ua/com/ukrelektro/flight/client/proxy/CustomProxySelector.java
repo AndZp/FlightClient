@@ -14,7 +14,7 @@ public class CustomProxySelector extends ProxySelector {
     @Override
     public List select(URI uri) 
     {
-        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", 8088));
+        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", 8081));
         ArrayList list = new ArrayList();
         list.add(proxy);
         return list;
